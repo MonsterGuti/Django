@@ -12,6 +12,7 @@ class AppUserCreationForm(UserCreationForm):
         fields = ["email"]
 
 
+
 class AppUserChangeForm(UserChangeForm):
     class Meta:
         model = UserModel

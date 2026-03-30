@@ -1,5 +1,7 @@
-
+from django.contrib.auth import get_user_model
 from django.db import models
+
+UserModel = get_user_model()
 
 
 class Comment(models.Model):
@@ -16,6 +18,11 @@ class Comment(models.Model):
         on_delete=models.CASCADE,
     )
 
+    user = models.ForeignKey(
+        UserModel,
+        on_delete=models.CASCADE,
+    )
+
     class Meta:
         ordering = ['-date_and_time_of_publication']
 
@@ -24,5 +31,8 @@ class Like(models.Model):
     to_photo = models.ForeignKey(
         "photos.Photo",
         on_delete=models.CASCADE,
+    ),
+    user = models.ForeignKey(
+        UserModel,
+        on_delete=models.CASCADE,
     )
-

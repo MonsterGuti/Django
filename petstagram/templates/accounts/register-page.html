@@ -1,22 +1,25 @@
-{% extends 'shared/base.html' %}
-{% block content %}
 
+{% extends 'shared/base.html' %}
+{% load placeholder %}
+
+{% block content %}
     <!-- Start Register Section -->
     <div class="login-register-div">
         <div class="login-register-box">
             <h1>Petstagram</h1>
 
             <!-- Start Register Form -->
-            <form action="">
-                <input type="text" placeholder="Username">
+            <form method="post">
+                {% csrf_token %}
+                
+                {{ form.email|placeholder:"Email" }}
+                {{ form.email.errors }}
+                
+                {{ form.password1|placeholder:"Password" }}
+                {{ form.password1.errors }}
+                {{ form.password2|placeholder:"Repeat Password" }}
+                {{ form.password2.errors }}
 
-                <input type="email" placeholder="Email">
-
-                <input type="password" placeholder="Password">
-
-                <input type="password" placeholder="Repeat Password">
-
-                <!-- Register Button -->
                 <button type="submit">Register</button>
             </form>
             <!-- End Register Form -->
@@ -29,5 +32,4 @@
         </div>
     </div>
     <!-- End Register Section -->
-
-{% endblock%}
+{% endblock %}

@@ -129,6 +129,16 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+EMAIL_PORT = 587
+COMPANY_EMAIL = os.getenv("COMPANY_EMAIL")
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 AUTH_USER_MODEL = 'accounts.AppUser'
+LOGIN_REDIRECT_URL = 'common:home'
+LOGOUT_REDIRECT_URL = 'accounts:login'
+LOGIN_URL = 'accounts:login'

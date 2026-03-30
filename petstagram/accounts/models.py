@@ -24,3 +24,6 @@ class Profile(models.Model):
     date_of_birth = models.DateField(blank=True, null=True)
     profile_picture = models.URLField(blank=True, null=True)
 
+    @property
+    def get_full_name(self):
+        return f"{self.first_name} {self.last_name}"
