@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Count, Sum
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, DetailView, UpdateView
 
@@ -20,19 +20,22 @@ class RegisterAppUserView(CreateView):
 
 
 def login(request):
-    return render(request, 'accounts/login-page.html')
+    return redirect(request, 'common/home-page.html')
 
 
 class ProfileDetailView(LoginRequiredMixin, DetailView):
     model = Profile
     template_name = 'accounts/profile-details-page.html'
 
+    # accounts/views.py
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
         context['total_likes'] = self.object.user.photo_set.annotate(
-            num_likes=Count('like'),
+            num_likes=Count('like'),  # <-- Използвай точно това име
         ).aggregate(total_likes=Sum('num_likes')).get("total_likes") or 0
+
         context['total_pets'] = self.object.user.pet_set.count()
         context['total_photos'] = self.object.user.photo_set.count()
 

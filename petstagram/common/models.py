@@ -31,7 +31,7 @@ class Like(models.Model):
     to_photo = models.ForeignKey(
         "photos.Photo",
         on_delete=models.CASCADE,
-    ),
+    )
     user = models.ForeignKey(
         UserModel,
         on_delete=models.CASCADE,

@@ -41,7 +41,7 @@ class PetDetailView(DetailView):
     slug_url_kwarg = 'pet_slug'
 
 
-class PetEditView(UpdateView, UpdateView, CheckUserIsOwner):
+class PetEditView(UpdateView, CheckUserIsOwner):
     template_name = 'pets/pet-edit-page.html'
     model = Pet
     form_class = PetForm

@@ -2,12 +2,9 @@
 <nav class="navbar">
     <div class="container">
         <div class="logo">
-            <!-- Link to Home Page -->
             <a href="{% url 'common:home' %}">
                 <img width="50px" src="{% static 'images/free-30-instagram-stories-icons23_122570.png' %}" alt="img1">
             </a>
-
-            <!-- Link to Home Page -->
             <a class="home" href="{% url 'common:home' %}">
                 <i>Petstagram</i>
             </a>
@@ -15,75 +12,33 @@
 
         <div class="nav-links">
             <ul class="nav-group">
-                <li class="nav-item">
-
-                    <!-- Link to Add Pet Page -->
-                    <a href="{% url 'pets:add' %}">
-                        <i>Add Pet</i>
-                    </a>
-                </li>
-                <li class="nav-item">
-
-                    <!-- Link to Add Photo Page -->
-                    <a href="{% url 'photos:add' %}">
-                        <i>Add Photo</i>
-                    </a>
-                </li>
+                {# --- Links for Logged In Users --- #}
                 {% if user.is_authenticated %}
                     <li class="nav-item">
-
-                        <!-- Link to Profile Page -->
-                        <a href="">
-                            <i>Profile</i>
-                        </a>
+                        <a href="{% url 'pets:add' %}"><i>Add Pet</i></a>
                     </li>
                     <li class="nav-item">
-
-                        <!-- Lpg out -->
-                        <a href="#">
-                            <i>Log out</i>
-                        </a>
+                        <a href="{% url 'photos:add' %}"><i>Add Photo</i></a>
                     </li>
-                    <form action="{% url 'accounts:logout' %}" method="post">
-                        {% csrf_token %}
-                        <button type="submit">Log out</button>
+                    <li class="nav-item">
+                        <a href="{% url 'accounts:details' user.pk %}"><i>Profile</i></a>
+                    </li>
+                    <li class="nav-item">
+                        <form action="{% url 'accounts:logout' %}" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" style="background:none; border:none; cursor:pointer;"><i>Log out</i></button>
+                        </form>
+                    </li>
 
-                    </form>
+                {# --- Links for Guests --- #}
                 {% else %}
                     <li class="nav-item">
-
-                        <!-- Link to Login Page -->
-                        <a href="{% url 'accounts:login' %}">
-                            <i>Login</i>
-                        </a>
+                        <a href="{% url 'accounts:login' %}"><i>Login</i></a>
                     </li>
                     <li class="nav-item">
-
-                        <!-- Link to Register Page -->
-                        <a href="{% url 'accounts:register' %}">
-                            <i>Register</i>
-                        </a>
+                        <a href="{% url 'accounts:register' %}"><i>Register</i></a>
                     </li>
                 {% endif %}
-                <li class="nav-item">
-
-                    <!-- Link to Profile Page -->
-                    <a href="{% url 'accounts:details' request.user.pk %}">
-                        <i>Profile</i>
-                    </a>
-                </li>
-                <li class="nav-item">
-
-                    <!-- Lpg out -->
-                    <a href="#">
-                        <i>Log out</i>
-                    </a>
-                </li>
-                <form action="{% url 'accounts:logout' %}" method="post">
-                    {% csrf_token %}
-                    <button type="submit">Log out</button>
-
-                </form>
             </ul>
         </div>
     </div>
