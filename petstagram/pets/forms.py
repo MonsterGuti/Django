@@ -1,5 +1,5 @@
-from django import forms
 
+from django import forms
 from pets.models import Pet
 
 
@@ -9,19 +9,20 @@ class PetForm(forms.ModelForm):
         fields = ['name', 'date_of_birth', 'personal_photo']
 
         labels = {
-            'personal_photo': '',
-            'name': '',
-            'date_of_birth': '',
+            'name': 'Pet Name',
+            'date_of_birth': 'Date of Birth',
+            'personal_photo': 'Image',
         }
 
         widgets = {
-            'date_of_birth': forms.DateInput(attrs={'type': 'date', 'placeholder': 'DD/MM/YYYY'}),
-            'name': forms.TextInput(attrs={'type': 'text', 'placeholder': 'Name'}),
-            'personal_photo': forms.URLInput(attrs={'type': 'url', 'placeholder': 'Photo'}),
+            'name': forms.TextInput(attrs={'placeholder': 'Enter pet name'}),
+            'date_of_birth': forms.DateInput(attrs={'type': 'date'}),
+            'personal_photo': forms.URLInput(attrs={'placeholder': 'Enter pet image'}),
         }
 
-class PetDeleteForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
+
+class PetDeleteForm(PetForm):
+    def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs['disabled'] = True

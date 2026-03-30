@@ -1,6 +1,6 @@
 {% extends 'shared/base.html' %}
-{% block content %}
 
+{% block content %}
     <div class="pet-profile">
         <!-- Start Pet Personal Data Section -->
         <div class="profile">
@@ -8,7 +8,7 @@
                 <div class="profile_img">
                     <div class="image">
                         <!-- Pet URL Image -->
-                        <img src="https://encrypted-tbn0.gstatic.com/static/images?q=tbn:ANd9GcTgoIHq82qLYnvomfz5ZkW5CLQ8VNxCyI-hUw&usqp=CAU"
+                        <img src="{{ pet.personal_photo }}"
                              alt="img8">
                     </div>
                 </div>
@@ -36,7 +36,7 @@
 
         <div class="pet-posts">
             {% for photo in pet.photo_set.all %}
-                {% include 'common/pet_posts.html' %}
+                {% include 'common/pet-posts.html' %}
             {% empty %}
                 <img class="no-posts" src="/static/images/no_posts.png" alt="no posts image">
             {% endfor %}

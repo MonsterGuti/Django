@@ -1,6 +1,8 @@
+
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+
 from accounts.models import Profile
 
 UserModel = get_user_model()
@@ -12,11 +14,9 @@ class AppUserCreationForm(UserCreationForm):
         fields = ["email"]
 
 
-
 class AppUserChangeForm(UserChangeForm):
-    class Meta:
+    class Meta(UserChangeForm.Meta):
         model = UserModel
-        fields = "__all__"
 
 
 class ProfileForm(forms.ModelForm):

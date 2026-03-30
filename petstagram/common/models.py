@@ -1,5 +1,7 @@
+
 from django.contrib.auth import get_user_model
 from django.db import models
+
 
 UserModel = get_user_model()
 
@@ -32,6 +34,7 @@ class Like(models.Model):
         "photos.Photo",
         on_delete=models.CASCADE,
     )
+
     user = models.ForeignKey(
         UserModel,
         on_delete=models.CASCADE,

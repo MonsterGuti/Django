@@ -1,3 +1,4 @@
+
 from django import forms
 from photos.models import Photo
 
@@ -5,4 +6,4 @@ from photos.models import Photo
 class PhotoForm(forms.ModelForm):
     class Meta:
         model = Photo
-        exclude = ('user',)
+        exclude = ["user"]
